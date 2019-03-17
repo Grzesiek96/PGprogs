@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define BUF_MAX 128
-
+//bez zmian
 int main(int argc,char* argv[]){
 	char buf[BUF_MAX];
 	char *p;
