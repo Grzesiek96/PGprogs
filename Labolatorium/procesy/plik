@@ -1,0 +1,3 @@
+ls -a
+sleep 5
+ps

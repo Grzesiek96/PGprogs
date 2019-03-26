@@ -1,0 +1,77 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+   <meta name="Author" content="Dr Leszek J. Opalski">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (Win98; I) [Netscape]">
+   <title>SOE-teksty źródłowe: sygnały</title>
+   <link REL="StyleSheet" HREF="../../../SOE.css" TYPE="text/css">
+</head>
+<body>
+<DIV class="header">
+<H2>
+    <a NAME="TOP" href="../../../index.html">
+    Systemy Operacyjne (SOE)</a>
+</H2>
+      	teksty źródłowe - sygnały          
+</DIV>
+Sygnały, a procesy:
+<ul>
+<li><a href="nonatomic.c">nonatomic.c</a>&nbsp;&nbsp;-&nbsp; program ilustrujący 
+możliwe (niedeterministyczne) skutki niepoprawnego przekazywania informacji 
+o obsłudze sygnału przez funkcję obsługi ("handler").</li>
+<li><a href="atomic.c">atomic.c</a>&nbsp;&nbsp;-&nbsp; program pokazujący 
+poprawny sposób przekazywania informacji o obsłudze sygnału za pomocą zmiennej
+globalnej typu <b>sig_atomic_t</b> z atrybutem <b>volatile</b>.</li>
+<li>
+<a href="sig1.c">sig1.c</a>&nbsp;&nbsp;
+-&nbsp; program ilustrujący zawodność obsługi sygnałów z użyciem <i>signal</i></li>
+<li>
+<a href="sig2.c">sig2.c</a> - program ilustrujący niebezpieczeństwa wynikające
+z modyfikacji danych globalnych oraz metodę ochrony ''sekcji krytycznej''
+za pomocą maskowania sygnałów.</li>
+<li>Program <a href="pgrp.c">pgrp.c</a> tworzy podprocesy, z których
+losowa część staje się przywódcami nowych grup procesów. Proces główny wysyła
+SIGINT do swojej grupy procesów...</li>
+<li><a href="prg1.c">prg1.c</a> - przykładowe rozwiązanie następującego zadania:<br>
+<tt>	./prg1        N          M</tt><br>
+<tt>N</tt>  jest liczbą podprocesów procesu głównego, który został utworzony przez
+wywołanie <tt>prg1</tt>.<br>
+Proces główny odbiera sygnały <tt>SIGINT.</tt> Jeżeli odbierze jeden taki sygnał 
+w ciągu 1 sekundy, to wysyła do podprocesu nr <tt>n</tt> (gdzie <tt>0<= n < N</tt>)
+sygnał <tt>SIGUSR1</tt>, a jeśli odbierze więcej  - to wysyła sygnał <tt>SIGUSR2</tt>.
+Po każdym wysłaniu podprocesowi sygnału (SIGUSR1 albo SIGUSR2) licznik <tt>n</tt> 
+w procesie głównym jest zwiększany o 1 (modulo <tt>N</tt>), 
+a proces główny ponawia odbiór sygnału <tt>SIGINT</tt> itd.<br>
+Jeżeli któryś z podprocesów odbierze <tt>M</tt>-krotnie sygnał <tt>SIGUSR2</tt> - 
+kończy się, zwracając procesowi głównemu wartość licznika odebranych sygnałów <tt>SIGUSR1</tt>.
+Proces główny wykrywa zakończenie procesu potomnego, wyświetla na standardowym 
+wyjściu <tt>PID</tt> potomka i kod jego wyjścia, po czym za pomocą sygnału <tt>SIGTERM</tt>
+powoduje zakończenie wszystkich pozostałych procesów potomnych oraz siebie.</li>
+<li> <a href="sigwait1.c">sigwait1.c</a> - najprostszy przykład wykorzystanie funkcji POSIX
+<tt>sigwait</tt> w procesie jednowątkowym do oczekiwania na przyjście sygnału ("synchroniczne oczekiwanie
+na zdarzenie asynchroniczne"). </li>
+</ul>
+Sygnały, a wątki:
+<ul>
+<li>
+<a href="sigwait2.c">sigwait2.c</a> - najprostszy przykład wykorzystanie funkcji POSIX
+<tt>sigwait</tt> w procesie wielowątkowym do oczekiwania na przyjście sygnału ("synchroniczne oczekiwanie
+na zdarzenie asynchroniczne"). </li>
+<li>
+<a href="sig3.c">sig3.c</a> - przykład użycia maski sygnałów wątku do
+określenia tego wątku, którego wykonanie jest przerywane przy doręczeniu sygnału
+do procesu. Wątek główny czeka aktywnie na powiadomienie (przez zmienną globalną)
+o obsłudze sygnału.</li>
+<li>
+<a href="sig4.c">sig4.c</a> - przykład użycia maski sygnałów wątku do
+określenia tego wątku, którego wykonanie jest przerywane przy doręczeniu sygnału
+do procesu. Przykład wykorzystanie funkcji POSIX <tt>sigwait</tt>.</li>
+<li><a href="sygnaly.zip">Archiwum</a> plików z bieżącego katalogu</li>
+</ul>
+
+<hr size="3" width="100%">                   
+<font size=-2> <i>Ostatnia modyfikacja:</i> 27.03.2017 (LJO)</font>   
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+   <meta name="Author" content="Dr Leszek J. Opalski">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (Win98; I) [Netscape]">
+   <title>SOE-teksty źródłowe:procesy</title>
+   <link REL="StyleSheet" HREF="../../../SOE.css" TYPE="text/css">
+</head>
+<body>
+<DIV class="header">
+<H2>
+    <a NAME="TOP" href="../../../index.html">
+    Systemy Operacyjne (SOE)</a>
+</H2>
+      	teksty źródłowe - procesy          
+</DIV>
+
+<ul>
+<li>Program <a href="envprt.c">envprt.c</a> umożliwia wyprowadzenie
+na standardowe wyjście wartości zmiennych środowiskowych wymienionych na liście
+argumentów wywołania, albo (gdy nie podano argumentów) podanych ze standardowego
+wejścia. Przykład użycia funkcji: <tt>fgets(), getenv(), strtok()</tt>.
+Program <a href="czytanie.c">czytanie.c</a> ilustruje sposób wykorzystania funkcji
+<tt>fgets(), strtok()</tt> do wczytywania linii tekstu ze standardowego wejścia,
+oraz znajdywania wyrazów w każdej z wczytanych linii.
+</li>
+<li><a href="msh1.c">msh1.c</a>&nbsp;
+- prosty interpreter poleceń, wykorzystujący powłokę do realizacji poleceń zewnętrznych.
+Przykład użycia funkcji: <tt>fgets(), system(), times()</tt>. 
+Interpreter może pracować interakcyjne będź wsadowo (np. <tt>msh1 < plik</tt> gdzie
+przykładowy plik danych: <a href="plik">plik</a>)
+</li>
+<li><a href="msh2.c">msh2.c</a>&nbsp;
+- prosty interpreter poleceń; przykład użycia: <tt>fork(), execvp(), waitpid(), strtok(),
+getrusage()</tt>.
+</li>
+<li><a href="p0.c">p0.c</a>,
+<a href="p1.c">p1.c</a>, <a href="p2.c">p2.c</a>, <a href="p3.c">p3.c</a>&nbsp;
+- omawiane na wykładzie kilkulinijkowe programy ilustrujące niektóre 
+(niespodziewane?) konsekwencje użycia funkcji fork()</li>
+<li><a href="hello_fork.c">hello_fork.c</a>, <a href="hello_fork1.c">hello_fork1.c</a>,
+ <a href="hello_fork2.c">hello_fork2.c</a> - przykłady użycia <tt>fork()</tt>,
+ <tt>execl()</tt>, <tt>wait()</tt>,...</li>
+<li><a href="system_call.c"</a>Ilustracja użycia funkcji <tt>system()</tt> do 
+wykonania polecenia powłoki w podprocesie</li>
+<li><a href="../FIFO/logcmd.c">logcmd.c</a> - przykład wykorzystania <tt>popen()</tt> 
+do wykonania polecenia powłoki w podprocesie z dostępem strumieniowym (FILE *)
+do standardowego wyjścia tego podprocesu</li>
+<li><a href="procesy.zip">procesy.zip</a> - archiwum plików z bieżącego katalogu</li>
+</ul>
+<hr size="3" width="100%">                   
+<font size=-2> <i>Ostatnia modyfikacja:</i> 13.III.2015 (LJO)</font>   
+
+</body>
+</html>
