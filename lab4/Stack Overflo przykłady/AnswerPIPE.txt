@@ -1,0 +1,13 @@
+fd_set readset;
+FD_ZERO(&readset);        // empty set of descriptor to select on
+FD_SET(fd, &readset);     // add the pipe
+FD_SET(stdin, &readset);  // add stdin
+result = select(fd + 1, &readset, NULL, NULL, NULL); // now wait for something to read on at least one channel (pipe or stdin)
+if (result>0) {
+    if (FD_ISSET(fd, &readset)) { // test for pipe availability
+        // now read the pipe
+    }
+    if (FD_ISSET(stdin, &readset)) { // test for stdin availability
+        // now read stdin
+    }
+}
