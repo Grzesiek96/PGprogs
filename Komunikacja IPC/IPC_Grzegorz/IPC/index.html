@@ -1,0 +1,97 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+   <meta name="Author" content="Dr Leszek J. Opalski">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (Win98; I) [Netscape]">
+   <title>Systemy operacyjne - teksty źródłowe: komunikacja i synchronizacja międzyprocesowa</title>
+<link REL="StyleSheet" HREF="../../../SOE.css" TYPE="text/css">
+</head>
+<body>
+<DIV class="header">
+<H2>
+    <a NAME="TOP" href="../../../index.html">
+    Systemy Operacyjne (SOE)</a>
+</H2>
+      	teksty źródłowe -  IPC          
+</DIV>
+
+<ul>
+<li><a href="semprint.c">semprint.c</a> - ilustracja użycia semaforów IPC.</li>
+<li><a href="msend1.c">msend1.c</a>, <a href="mrecv1.c">mrecv1.c</a>, 
+<a href="msendrcv.h">msendrcv.h</a> - ilustracja użycia kolejki komunikatów IPC</li>
+<li>
+<a href="msgtool.c">msgtool.c</a>&nbsp;
+- interakcyjny program do manipulacji kolejkami wiadomości IPC sytemu UNIX V.
+ Przykładowe użycie:
+<ul>
+<li>
+wysłanie wiadomości <i>"tekst"</i>
+typu <i>type=1 </i>(do kolejki tworzonej automatycznie przez <i>msgtool</i>)<br>
+<i>msgtool&nbsp;&nbsp; s&nbsp;&nbsp;
+1 "tekst"</i></li>
+<li>
+pobranie wiadomosci typu <i>type=1</i>
+z wypisaniem wiadomości na ekran<br>
+<i>msgtool&nbsp;&nbsp; r&nbsp;&nbsp;1</i></li>
+</ul>
+</li>
+<li>
+<a href="semtool.c">semtool.c</a>&nbsp;
+- interakcyjny program do manipulacji semaforami&nbsp; IPC sytemu UNIX
+V. Przykładowe użycie:<br>
+<ul>
+<li>utworzenie zbioru <i>n=5</i> semaforów<br>
+	<i>semtool&nbsp;&nbsp;&nbsp; c&nbsp;&nbsp;&nbsp;5</i></li>
+<li>próba zajęcia semafora numer m<i>=1</i><br>
+	<i>semtool&nbsp;&nbsp;&nbsp; l&nbsp;&nbsp;&nbsp;1</i></li>
+<li>próba zajęcia semafora numer m<i>=1</i> z blokowaniem (gdy niedostępny)<br>
+	<i>semtool&nbsp;&nbsp;&nbsp; b&nbsp;&nbsp;&nbsp;1</i></li>
+<li>zwolnienie semafora numer m=1<br>
+	<i>semtool&nbsp;&nbsp; u&nbsp;&nbsp;&nbsp;1</i></li>
+<li>zmiana praw dostępu do semafora na <i>mode=660</i><br>
+	<i>semtool&nbsp;&nbsp; m&nbsp;&nbsp;660</i></li>
+<li>usunięcie zbioru semaforów<br>
+	<i>semtool&nbsp;&nbsp;&nbsp; d</i></li>
+</ul>
+</li>
+<li>
+<a href="shmtool.c">shmtool.c</a>&nbsp;
+- interakcyjny program do manipulacji pamięcią dzieloną&nbsp; IPC sytemu
+UNIX V. Przykładowe użycie:<br>
+<ul>
+<li> zapisanie wiadomości <i>"tekst"&nbsp;</i>
+w segmencie pamięci dzielonej (tworzonej automatycznie przez shmtool)<br>
+	<i>shmtool&nbsp;&nbsp; w&nbsp;&nbsp;"tekst"</i></li>
+<li>odczyt tekstu z segmentu pamięci dzielonej&nbsp;z wypisaniem wiadomości na ekran<br>
+	<i>shmtool&nbsp;&nbsp; r</i></li>
+<li>zmiana praw dostępu do segmentu pamięci dzielonej na <i>mode=660</i><br>
+	<i>shmtool&nbsp;&nbsp; m&nbsp;&nbsp;660</i></li>
+<li>usunięcie segmentu pamięci dzielonej<br>
+	<i>shmtool&nbsp;&nbsp; d</i></li>
+</ul>
+</li>
+</ul>
+Uwagi:
+<ol>
+<li>
+Opis programów <i>msgtool</i>, <i>semtool</i>,
+<i>shmtool</i> można znaleźć w
+<a href="http://www.tldp.org/LDP/lpg/node21.html">The Linux Programmer's Guide"</a>.
+</li>
+
+<li>
+Przy pracy z IPC przydatne są następujące
+polecenia systemowe: <i>ipcs</i> oraz <i>ipcrm</i>. Ponieważ
+obiekty IPC (tzn. kolejki komunikatów, semafory i segmenty pamięci dzielonej)
+są globalne i pozostają w systemie do ich jawnego usunięcia - proszę pamiętać
+o usuwaniu nieużywanych obiektów IPC w środowisku 
+wieloużytkownikowym.</li>
+<li>Archiwum plików z bieżącego katalogu: <a href="IPC.zip">IPC.zip</a>.</li>
+</ol>
+
+<hr size="3" width="100%">                   
+<font size=-2> <i>Ostatnia modyfikacja:</i> 6.V.2014 (LJO)</font>    
+
+</body>
+</html>

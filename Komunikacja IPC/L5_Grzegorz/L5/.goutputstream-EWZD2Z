@@ -1,0 +1,73 @@
+/* Hello2.c - prints "Hello world\n" using 3 threads
+ * 1nd working thread (world_thread) is created as detached,
+ * is waiting for the 2nd working thread (hello_thread) to print "Hello ",
+ * then the 1st adds "world"
+ * the main thread waits for the 1nd thread, and prints "\n"
+ */
+
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+/* External Declarations	*/
+
+pthread_mutex_t prt_lock = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t prt_cv = PTHREAD_COND_INITIALIZER;
+int prt = 0;
+
+void *hello_thread(void *arg)
+{
+	pthread_mutex_lock(&prt_lock);
+	printf("hello ");
+	prt = 1;
+	pthread_cond_signal(&prt_cv); //powoduje wznowienie jedengo z wątków oczekujących na zmiennej warunkowej
+	pthread_mutex_unlock(&prt_lock);
+
+	return (0);
+}
+
+void *world_thread(void *arg)
+{
+
+	pthread_mutex_lock(&prt_lock);
+
+	while (prt == 0)g
+		pthread_cond_wait(&prt_cv, &prt_lock); //czasowe zwolnienie mutexa i wstrzymanie wątka w oczekiwaniu na spełnienie warunku
+
+	printf("world");
+	pthread_mutex_unlock(&prt_lock);
+
+	pthread_exit(0);
+}
+
+int main(int argc, char *argv[])
+{
+	int n;
+	pthread_attr_t attr;
+	pthread_t tid;
+
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+	if ((n = pthread_create(&tid, &attr, world_thread, NULL)) > 0) {
+		fprintf(stderr, "pthread_create: %s\n", strerror(n));
+		exit(1);
+	}
+
+	pthread_attr_destroy(&attr);
+
+	if ((n = pthread_create(&tid, NULL, hello_thread, NULL)) > 0) {
+		fprintf(stderr, "pthread_create: %s\n", strerror(n));
+		exit(1);
+	}
+
+	if ((n = pthread_join(tid, NULL)) > 0) {
+		fprintf(stderr, "pthread_join: %s\n", strerror(n));
+		exit(1);
+	}
+
+	printf("\n");
+
+	return (0);
+}

@@ -1,0 +1,8 @@
+======================== 2019-01-08_17.03 ========================
+User=kkrupins  CurrDir=/home/mion/s/141/kkrupins/Desktop/SOE/L5  From=LOCAL_TERMINAL_
+Command='CP msypniew manage.c com.c'\n
+Creating destination dir: /home/common/dyd/soe/msypniew/CP/2019-01-08/kkrupins_17.03
+Copying following files to destination dir:\n
+-rw-r--r-- 1 kkrupins student 1567 sty  8 17:03 manage.c
+-rw-r--r-- 1 kkrupins student 2497 sty  8 16:56 com.c
+\nCopy completed.  (log appended to /home/mion/s/141/kkrupins/Desktop/SOE/L5/CP.log)\n
